@@ -8,7 +8,7 @@
 
 -   🌐 **Programming Language:** PHP.
 -   ⚙️ **Templating Engine:** Blade.
--   🧩 **Frameworks:** Laravel and Tailwind CSS.
+-   🧩 **Frameworks:** Laravel, Alpine.js, and Tailwind CSS.
 -   ⚛️ **Library:** Spatie.
 -   🗄️ **Database:** MySQL.
 -   💻 **Software:** Visual Studio Code and Laragon.
