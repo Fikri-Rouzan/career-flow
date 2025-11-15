@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::middleware('can:apply job')->group(function () {
             Route::get('my-applications', [DashboardController::class, 'my_applications'])->name('my.applications');
-            Route::get('my-applications/{job_candidate}', [DashboardController::class, 'my_applications_details'])->name('my.applications.details');
+            Route::get('my-applications/{job_candidate}', [DashboardController::class, 'my_application_details'])->name('my.applications.details');
         });
     });
 
