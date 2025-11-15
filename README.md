@@ -7,6 +7,7 @@
 ## 🛠️ Technologies Used
 
 -   🌐 **Programming Language:** PHP.
+-   ⚙️ **Templating Engine:** Blade.
 -   🧩 **Frameworks:** Laravel and Tailwind CSS.
 -   ⚛️ **Library:** Spatie.
 -   🗄️ **Database:** MySQL.
