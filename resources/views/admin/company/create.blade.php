@@ -8,7 +8,8 @@
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
-                <form method="POST" action=" " enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.company.store') }}" enctype="multipart/form-data">
+                    @csrf
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
@@ -16,13 +17,13 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="mt-4">
-                        <x-input-label for="logo" :value="__('logo')" />
+                        <x-input-label for="logo" :value="__('Logo')" />
                         <x-text-input id="logo" class="block mt-1 w-full" type="file" name="logo" required
                             autofocus autocomplete="logo" />
                         <x-input-error :messages="$errors->get('logo')" class="mt-2" />
                     </div>
                     <div class="mt-4">
-                        <x-input-label for="about" :value="__('about')" />
+                        <x-input-label for="about" :value="__('About')" />
                         <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2" />
                     </div>

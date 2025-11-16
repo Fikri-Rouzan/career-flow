@@ -31,15 +31,34 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'account_type' => ['required', 'string', 'max:255'],
+            'avatar' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'occupation' => ['required', 'string', 'max:255'],
+            'experience' => ['required', 'numeric', 'min:0'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars/' . date('Y/m/d'), 'public');
+        }
+
         $user = User::create([
             'name' => $request->name,
+            'avatar' => $avatarPath,
+            'occupation' => $request->occupation,
+            'experience' => $request->experience,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if ($request->account_type == 'Employee') {
+            $user->assignRole('employee');
+        } else if ($request->account_type == 'Employer') {
+            $user->assignRole('employer');
+        } else {
+            $user->assignRole('employee');
+        }
 
         event(new Registered($user));
 
