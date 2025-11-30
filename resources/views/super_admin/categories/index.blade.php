@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('title', 'Manage Categories')
+
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -46,7 +48,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-slate-500">No categories found.</p>
+                    <p class="text-center text-gray-900">No categories found.</p>
                 @endforelse
             </div>
         </div>

@@ -1,8 +1,10 @@
 <x-app-layout>
+    @section('title', 'Manage Job Listings')
+
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Manage Job Listing') }}
+                {{ __('Manage Job Listings') }}
             </h2>
             <a href="{{ route('admin.company_jobs.create') }}"
                 class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
@@ -54,7 +56,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-slate-500">No job listings found.</p>
+                    <p class="text-center text-gray-900">No job listings found.</p>
                 @endforelse
             </div>
         </div>

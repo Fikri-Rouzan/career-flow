@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('title', 'Edit Company')
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Company') }}
@@ -14,7 +16,8 @@
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                            value="{{ $company->name }}" required autofocus autocomplete="name" />
+                            value="{{ $company->name }}" required autofocus autocomplete="name"
+                            placeholder="Type your company name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="mt-4">
@@ -27,7 +30,8 @@
                     </div>
                     <div class="mt-4">
                         <x-input-label for="about" :value="__('About')" />
-                        <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full">{{ $company->about }}</textarea>
+                        <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"
+                            placeholder="Type your company description">{{ $company->about }}</textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2" />
                     </div>
                     <div class="flex items-center justify-end mt-4">

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CompanyController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -76,6 +79,8 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
+        $this->authorize('edit', $company);
+
         return view('admin.company.edit', compact('company'));
     }
 
@@ -93,7 +98,6 @@ class CompanyController extends Controller
             }
 
             $validated['slug'] = Str::slug($validated['name']);
-
             $company->update($validated);
         });
 
@@ -105,10 +109,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        DB::transaction(function () use ($company) {
-            $company->delete();
-        });
-
-        return redirect()->route('admin.company.index');
+        //
     }
 }

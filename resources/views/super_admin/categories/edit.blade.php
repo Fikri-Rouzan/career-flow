@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('title', 'Edit Category')
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Category') }}
@@ -15,7 +17,8 @@
                     <div>
                         <x-input-label for="name" :value="__('Name')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required
-                            value="{{ $category->name }}" autofocus autocomplete="name" />
+                            value="{{ $category->name }}" autofocus autocomplete="name"
+                            placeholder="Type a category name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="mt-4">

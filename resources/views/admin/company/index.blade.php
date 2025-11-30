@@ -1,4 +1,6 @@
 <x-app-layout>
+    @section('title', 'My Company')
+
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">

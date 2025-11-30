@@ -1,7 +1,9 @@
 <x-app-layout>
+    @section('title', 'Job Details')
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Project Details') }}
+            {{ __('Job Details') }}
         </h2>
     </x-slot>
 
@@ -22,7 +24,7 @@
                             class="font-bold py-4 px-6 bg-indigo-500 text-white rounded-full">
                             Edit Job
                         </a>
-                        <a href="" class="font-bold py-4 px-6 bg-orange-500 text-white rounded-full">
+                        <a href="#" class="font-bold py-4 px-6 bg-orange-500 text-white rounded-full">
                             Preview
                         </a>
                     </div>
@@ -126,9 +128,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-slate-500">
-                        No candidates found.
-                    </p>
+                    <p class="text-center text-gray-900">No candidates found.</p>
                 @endforelse
             </div>
         </div>

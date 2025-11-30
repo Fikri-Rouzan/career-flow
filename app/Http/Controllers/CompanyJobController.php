@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyJobRequest;
+use App\Http\Requests\UpdateCompanyJobRequest;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\CompanyJob;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -62,7 +62,6 @@ class CompanyJobController extends Controller
 
             $validated['slug'] = Str::slug($validated['name']);
             $validated['is_open'] = true;
-
             $newJob = CompanyJob::create($validated);
 
             if (!empty($validated['responsibilities'])) {
@@ -98,15 +97,56 @@ class CompanyJobController extends Controller
      */
     public function edit(CompanyJob $companyJob)
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.company_jobs.edit', compact('companyJob', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CompanyJob $companyJob)
+    public function update(UpdateCompanyJobRequest $request, CompanyJob $companyJob)
     {
-        //
+        $user = Auth::user();
+        $my_company = Company::where('employer_id', $user->id)->first();
+
+        if ($companyJob->company_id !== $my_company->id) {
+            abort(403);
+        }
+
+        DB::transaction(function () use ($request, $companyJob) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails/' . date('Y/m/d'), 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+
+            $validated['slug'] = Str::slug($validated['name']);
+            $companyJob->update($validated);
+
+            if (!empty($validated['responsibilities'])) {
+                $companyJob->responsibilities()->delete();
+
+                foreach ($validated['responsibilities'] as $responsibility) {
+                    $companyJob->responsibilities()->create([
+                        'name' => $responsibility,
+                    ]);
+                }
+            }
+
+            if (!empty($validated['qualifications'])) {
+                $companyJob->qualifications()->delete();
+
+                foreach ($validated['qualifications'] as $qualification) {
+                    $companyJob->qualifications()->create([
+                        'name' => $qualification,
+                    ]);
+                }
+            }
+        });
+
+        return redirect()->route('admin.company_jobs.index');
     }
 
     /**
