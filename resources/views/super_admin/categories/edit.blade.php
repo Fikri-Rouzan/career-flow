@@ -9,7 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden p-6 sm:p-10 shadow-sm sm:rounded-lg">
                 <form method="POST" action="{{ route('admin.categories.update', $category) }}"
                     enctype="multipart/form-data">
                     @csrf
@@ -24,13 +24,14 @@
                     <div class="mt-4">
                         <x-input-label for="icon" :value="__('Icon')" />
                         <img src="{{ Storage::url($category->icon) }}" alt=""
-                            class="rounded-2xl object-cover w-[90px] h-[90px]">
+                            class="rounded-2xl object-cover w-[90px] h-[90px] mb-3">
                         <x-text-input id="icon" class="block mt-1 w-full" type="file" name="icon" autofocus
                             autocomplete="icon" />
                         <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                     </div>
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                    <div class="flex items-center justify-end mt-8">
+                        <button type="submit"
+                            class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full w-full sm:w-auto text-center">
                             Update Category
                         </button>
                     </div>
