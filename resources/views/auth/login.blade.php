@@ -6,7 +6,8 @@
 
     <body class="font-poppins text-[#0E0140]">
         <main class="min-h-dvh">
-            <div id="left-side" class="fixed top-0 left-0 h-dvh w-[640px] outline outline-1 outline-[#E8E4F8]">
+            <div id="left-side"
+                class="hidden lg:block fixed top-0 left-0 h-dvh lg:w-[460px] xl:w-[640px] outline outline-1 outline-[#E8E4F8] overflow-hidden transition-all duration-300">
                 <img src="{{ asset('assets/backgrounds/smiley-woman.png') }}" class="size-full object-cover"
                     alt="background image" />
                 <div
@@ -29,7 +30,7 @@
                         <div class="flex items-center gap-[2px]">
                             @foreach (range(1, 5) as $i)
                                 <div class="w-6 h-6 flex shrink-0">
-                                    <img src="{{ asset('assets/icons/Star.svg') }}" alt="star">
+                                    <img src="{{ asset('assets/icons/star.svg') }}" alt="star">
                                 </div>
                             @endforeach
                         </div>
@@ -37,12 +38,14 @@
                 </div>
             </div>
 
-            <section id="right-side" class="w-dvw h-dvh flex flex-col items-center justify-center pl-[640px] py-[140px]">
-                <a href="{{ route('front.index') }}" class="flex shrink-0 justify-start w-[500px] h-[10] mb-[70px]">
+            <section id="right-side"
+                class="w-full h-dvh flex flex-col items-center justify-center px-4 lg:pl-[480px] xl:pl-[640px] py-10 lg:py-[140px] transition-all duration-300">
+                <a href="{{ route('front.index') }}"
+                    class="flex shrink-0 justify-start w-full max-w-[500px] h-[10] mb-10 lg:mb-[70px]">
                     <img src="{{ asset('assets/logos/logo-black.svg') }}" class="object-contain" alt="logo" />
                 </a>
                 <form id="form-signin" action="{{ route('login') }}" method="POST"
-                    class="w-[500px] flex flex-col gap-[30px]">
+                    class="w-full max-w-[500px] flex flex-col gap-[30px]">
                     @csrf
                     <h1 class="text-[26px] leading-[39px] font-bold">Sign In</h1>
                     <div class="flex flex-col gap-2">

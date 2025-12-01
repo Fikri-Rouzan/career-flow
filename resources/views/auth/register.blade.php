@@ -7,11 +7,11 @@
     <body class="font-poppins text-[#0E0140]">
         <main class="min-h-screen flex">
             <div id="Left-background"
-                class="fixed top-0 left-0 h-screen w-[640px] flex shrink-0 items-baseline ring-1 ring-[#E8E4F8] overflow-hidden">
+                class="hidden lg:flex fixed top-0 left-0 h-screen lg:w-[460px] xl:w-[640px] shrink-0 items-baseline ring-1 ring-[#E8E4F8] overflow-hidden transition-all duration-300">
                 <img src="{{ asset('assets/backgrounds/working-from-home.png') }}"
                     class="background object-cover w-full h-full" alt="background image">
                 <div
-                    class="testimonial absolute bottom-0 w-[580px] mx-[30px] mt-auto mb-[30px] rounded-[20px] border border-[#E8E4F8] p-5 flex flex-col gap-4 bg-white shadow-[0_8px_30px_0_#0E01400D]">
+                    class="testimonial absolute bottom-0 w-[calc(100%-60px)] mx-[30px] mt-auto mb-[30px] rounded-[20px] border border-[#E8E4F8] p-5 flex flex-col gap-4 bg-white shadow-[0_8px_30px_0_#0E01400D]">
                     <p class="caption font-semibold leading-8">Career Flow gave me a fresh start after being laid off. I was
                         able to learn new skills, upgrade my portfolio, and then land a remote job with a pretty ideal
                         salary! Awesome.</p>
@@ -38,11 +38,11 @@
             </div>
 
             <section id="Signup-form"
-                class="pl-[640px] flex flex-col py-[140px] items-center justify-center w-full gap-[70px]">
+                class="w-full flex flex-col py-10 lg:py-[140px] px-4 lg:pl-[480px] xl:pl-[640px] items-center justify-center gap-[30px] lg:gap-[70px] transition-all duration-300">
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data"
                     class="max-w-[500px] w-full flex flex-col gap-[30px]">
                     @csrf
-                    <a href="{{ route('front.index') }}" class="logo h-[10] flex shrink-0 justify-start mb-10">
+                    <a href="{{ route('front.index') }}" class="logo h-[10] flex shrink-0 justify-start mb-5 lg:mb-10">
                         <img src="{{ asset('assets/logos/logo-black.svg') }}" class="object-contain" alt="logo">
                     </a>
                     <h1 class="font-bold text-[26px] leading-[39px]">Create Account</h1>
@@ -85,7 +85,7 @@
                                 placeholder="Type your email" required>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-[30px]">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                         <div class="flex flex-col gap-2">
                             <label for="Occupation" class="font-semibold">Occupation</label>
                             <div
@@ -172,7 +172,7 @@
                     </div>
                     <div class="flex flex-col gap-2">
                         <p class="font-semibold">Account Type</p>
-                        <div class="grid grid-cols-2 gap-[30px]">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                             <label
                                 class="relative group bg-white rounded-3xl p-[30px_24px] flex flex-col items-center justify-center gap-5 ring-1 ring-[#0E0140] has-[:checked]:ring-2 has-[:checked]:ring-[#FF6B2C] transition-all duration-300 cursor-pointer">
                                 <div class="w-[46px] h-[46px] flex shrink-0">
