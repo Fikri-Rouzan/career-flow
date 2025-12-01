@@ -88,8 +88,8 @@
                 <div class="flex flex-col gap-y-4">
                     @forelse ($companyJob->candidates as $candidate)
                         <div
-                            class="flex flex-col md:flex-row justify-between items-start md:items-center p-4 rounded-xl border border-gray-100 md:border-none gap-y-4">
-                            <div class="flex flex-row items-center gap-x-3 w-full md:w-auto">
+                            class="grid grid-cols-1 md:grid-cols-12 gap-y-4 md:gap-x-4 items-center p-4 rounded-xl border border-gray-100 md:border-none">
+                            <div class="md:col-span-6 flex flex-row items-center gap-x-3">
                                 <img src="{{ Storage::url($candidate->profile->avatar) }}" alt=""
                                     class="rounded-full object-cover w-[50px] h-[50px] md:w-[70px] md:h-[70px]">
                                 <div class="flex flex-col">
@@ -102,27 +102,27 @@
                                     </p>
                                 </div>
                             </div>
-                            <div class="w-full md:w-auto">
+                            <div class="md:col-span-3 md:text-center">
                                 @if ($candidate->is_hired)
                                     <span
-                                        class="inline-block text-center w-full md:w-auto text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
+                                        class="inline-block w-full md:w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white text-center">
                                         HIRED
                                     </span>
                                 @elseif (!$candidate->is_hired && $companyJob->is_open)
                                     <span
-                                        class="inline-block text-center w-full md:w-auto text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
+                                        class="inline-block w-full md:w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white text-center">
                                         WAITING
                                     </span>
                                 @elseif (!$candidate->is_hired)
                                     <span
-                                        class="inline-block text-center w-full md:w-auto text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white">
+                                        class="inline-block w-full md:w-fit text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white text-center">
                                         REJECTED
                                     </span>
                                 @endif
                             </div>
-                            <div class="w-full md:w-auto">
+                            <div class="md:col-span-3 md:text-right">
                                 <a href="{{ route('admin.job_candidates.show', $candidate) }}"
-                                    class="block font-bold py-3 px-6 bg-indigo-700 text-white rounded-full text-center text-sm md:text-base">
+                                    class="inline-block font-bold py-3 px-6 bg-indigo-700 text-white rounded-full text-center w-full md:w-auto text-sm md:text-base">
                                     Details
                                 </a>
                             </div>

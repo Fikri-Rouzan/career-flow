@@ -9,57 +9,64 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
-                <div class="item-card flex flex-row gap-y-10 justify-between md:items-center">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5 sm:p-10 flex flex-col gap-y-5">
+                <div class="item-card flex flex-col md:flex-row gap-y-5 md:gap-y-10 justify-between md:items-center">
                     <div class="flex flex-row items-center gap-x-3">
                         <img src="{{ Storage::url($jobCandidate->job->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[120px] h-[90px]">
+                            class="rounded-2xl object-cover w-[90px] h-[70px] md:w-[120px] md:h-[90px]">
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $jobCandidate->job->name }}</h3>
+                            <h3 class="text-indigo-950 text-lg md:text-xl font-bold">{{ $jobCandidate->job->name }}</h3>
                             <p class="text-slate-500 text-sm">{{ $jobCandidate->job->category->name }}</p>
                         </div>
                     </div>
                 </div>
 
-                <hr class="my-5">
+                <hr class="my-3 md:my-5">
                 <h3 class="text-indigo-950 text-xl font-bold">Candidate</h3>
 
-                <div class="flex flex-row items-center justify-between">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-y-4">
                     <div class="flex flex-row items-center gap-x-3">
                         <img src="{{ Storage::url($jobCandidate->profile->avatar) }}" alt=""
-                            class="rounded-full object-cover w-[70px] h-[70px]">
+                            class="rounded-full object-cover w-[60px] h-[60px] md:w-[70px] md:h-[70px]">
                         <div class="flex flex-col">
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $jobCandidate->profile->name }}</h3>
-                            <p class="text-slate-500 text-sm">{{ $jobCandidate->profile->occupation }} -
-                                {{ $jobCandidate->profile->experience }} years experience</p>
+                            <h3 class="text-indigo-950 text-lg md:text-xl font-bold">{{ $jobCandidate->profile->name }}
+                            </h3>
+                            <p class="text-slate-500 text-sm">
+                                {{ $jobCandidate->profile->occupation }} - {{ $jobCandidate->profile->experience }} yrs
+                                exp
+                            </p>
                         </div>
                     </div>
-
-                    @if ($jobCandidate->is_hired)
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
-                            HIRED
-                        </span>
-                    @elseif (!$jobCandidate->is_hired && $jobCandidate->job->is_open)
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
-                            WAITING
-                        </span>
-                    @elseif (!$jobCandidate->is_hired)
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white">
-                            REJECTED
-                        </span>
-                    @endif
+                    <div>
+                        @if ($jobCandidate->is_hired)
+                            <span
+                                class="inline-block w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
+                                HIRED
+                            </span>
+                        @elseif (!$jobCandidate->is_hired && $jobCandidate->job->is_open)
+                            <span
+                                class="inline-block w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
+                                WAITING
+                            </span>
+                        @elseif (!$jobCandidate->is_hired)
+                            <span
+                                class="inline-block w-fit text-sm font-bold py-2 px-3 rounded-full bg-red-500 text-white">
+                                REJECTED
+                            </span>
+                        @endif
+                    </div>
                 </div>
-                <div class="flex flex-row justify-between">
-                    <div class="flex flex-col gap-y-3 basis-3/4">
-                        <h3 class="text-indigo-950 text-xl font-bold mt-5">Message</h3>
-                        <p>
+                <div class="flex flex-col md:flex-row justify-between gap-y-5 md:gap-x-10">
+                    <div class="flex flex-col gap-y-3 md:basis-3/4">
+                        <h3 class="text-indigo-950 text-xl font-bold mt-2 md:mt-5">Message</h3>
+                        <p class="text-slate-600 text-sm md:text-base leading-relaxed">
                             {{ $jobCandidate->message }}
                         </p>
                     </div>
-                    <div class="flex flex-col gap-y-3">
-                        <h3 class="text-indigo-950 text-xl font-bold mt-5">Candidate Resume</h3>
+                    <div class="flex flex-col gap-y-3 w-full md:w-auto">
+                        <h3 class="text-indigo-950 text-xl font-bold mt-2 md:mt-5">Resume</h3>
                         <a href="{{ route('admin.download_resume', $jobCandidate) }}"
-                            class="w-fit font-bold py-4 px-6 bg-blue-500 text-white rounded-full">
+                            class="w-full md:w-fit font-bold py-3 md:py-4 px-6 bg-blue-500 text-white rounded-full text-center">
                             Download
                         </a>
                     </div>
@@ -67,9 +74,10 @@
 
                 @if ($jobCandidate->is_hired)
                     <hr class="my-5">
-                    <h3 class="text-indigo-950 text-xl font-bold">Setup Meeting with Employee</h3>
-                    <div class="flex flex-row gap-x-4 items-center border border-slate-200 w-fit px-5 py-3 rounded-2xl">
-                        <svg width="38" height="38" viewBox="0 0 24 24" fill="none"
+                    <h3 class="text-indigo-950 text-xl font-bold">Setup Meeting</h3>
+                    <div
+                        class="flex flex-row gap-x-3 items-center border border-slate-200 w-full md:w-fit px-4 py-3 rounded-2xl overflow-hidden">
+                        <svg class="shrink-0 w-8 h-8 md:w-[38px] md:h-[38px]" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path opacity="0.58" d="M24 0H0V24H24V0Z" fill="white" />
                             <path opacity="0.4"
@@ -82,17 +90,18 @@
                                 d="M17.75 10.0196V13.9996C17.75 14.4296 17.27 14.6896 16.91 14.4496L14.99 13.1696C14.84 13.0696 14.75 12.8996 14.75 12.7196V11.2996C14.75 11.1196 14.84 10.9496 14.99 10.8496L16.91 9.56964C17.27 9.32964 17.75 9.58963 17.75 10.0196Z"
                                 fill="#292D32" />
                         </svg>
-                        <p class="text-indigo-950 text-lg font-bold">{{ $jobCandidate->profile->email }}</p>
+                        <p class="text-indigo-950 text-base md:text-lg font-bold truncate">
+                            {{ $jobCandidate->profile->email }}</p>
                     </div>
                 @endif
 
                 @if ($jobCandidate->job->is_open)
                     <form method="POST" action="{{ route('admin.job_candidates.update', $jobCandidate->id) }}"
-                        class="mt-10">
+                        class="mt-5 md:mt-10">
                         @csrf
                         @method('PUT')
                         <button type="submit"
-                            class="mt-2 w-full font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            class="w-full font-bold py-4 px-6 bg-indigo-700 text-white rounded-full hover:bg-indigo-800 transition-colors">
                             Approve & Hire Now
                         </button>
                     </form>
