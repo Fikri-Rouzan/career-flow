@@ -1,8 +1,8 @@
 @props(['job'])
 
-<div class="card first-of-type:pl-[calc((100%-1130px)/2)] last-of-type:pr-[calc((100%-1130px)/2)] px-[15px] py-[2px]">
+<div class="w-[300px] mr-6 xl:first:ml-[calc((100%-1130px)/2)] shrink-0 py-4">
     <div
-        class="w-[300px] flex flex-col shrink-0 rounded-[20px] border border-[#E8E4F8] p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-[#FF6B2C] transition-all duration-300">
+        class="flex flex-col rounded-[20px] border border-[#E8E4F8] p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-[#FF6B2C] transition-all duration-300">
         <div class="company-info flex items-center gap-3">
             <div class="w-[70px] flex shrink-0 overflow-hidden">
                 <img src="{{ Storage::url($job->company->logo) }}" class="object-contain w-full h-full" alt="logo">
@@ -13,9 +13,11 @@
                 </p>
             </div>
         </div>
+
         <hr class="border-[#E8E4F8]">
         <p class="job-title font-bold text-lg leading-[27px] h-[54px] flex shrink-0 line-clamp-2">
             {{ $job->name }}</p>
+
         <div class="job-info flex flex-col gap-[14px]">
             <div class="flex items-center gap-[6px]">
                 <div class="flex shrink-0 w-6 h-6">
@@ -36,7 +38,9 @@
                 <p class="font-medium">{{ $job->location }}</p>
             </div>
         </div>
+
         <hr class="border-[#E8E4F8]">
+
         <div class="flex items-center justify-between">
             <div class="flex flex-col gap-[2px]">
                 <p class="font-bold text-lg leading-[27px]">Rp
