@@ -13,7 +13,7 @@
         <x-nav />
 
         <article id="Details"
-            class="relative z-10 max-w-[900px] mx-4 lg:mx-auto flex flex-col rounded-[20px] bg-white border border-[#E8E4F8] p-0 lg:p-[30px] gap-6 lg:gap-10 shadow-[0_8px_30px_0_#0E01400D] mt-6 lg:mt-[70px] overflow-hidden">
+            class="relative z-10 max-w-[900px] mx-4 lg:mx-auto flex flex-col rounded-[20px] bg-white border border-[#E8E4F8] p-0 lg:p-[30px] gap-6 lg:gap-10 shadow-[0_8px_30px_0_#0E01400D] mt-10 lg:mt-[70px] overflow-hidden">
             <div id="Cover" class="w-full relative h-[200px] lg:h-auto bg-[#D9D9D9] lg:rounded-[20px]">
                 <div class="w-full h-full lg:aspect-[840/300] overflow-hidden lg:rounded-[20px]">
                     <img src="{{ Storage::url($companyJob->thumbnail) }}" class="object-cover w-full h-full"

@@ -13,7 +13,7 @@
         <x-nav />
 
         <header
-            class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-10 xl:gap-[50px] mt-8 lg:mt-[70px] px-4 xl:px-0">
+            class="container max-w-[1130px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-10 xl:gap-[50px] mt-10 lg:mt-[70px] px-4 xl:px-0">
             <div class="flex flex-col justify-center w-full gap-6 lg:gap-8 xl:gap-10">
                 <div class="badge flex items-center rounded-full py-2 pl-4 pr-6 gap-[10px] bg-white w-fit shadow-sm">
                     <div class="flex shrink-0 w-5 h-5 lg:w-6 lg:h-6">
@@ -39,7 +39,7 @@
                         </div>
                         <input name="keyword" type="text" autocomplete="keyword"
                             class="appearance-none w-full outline-none font-semibold text-sm lg:text-base placeholder:font-normal placeholder:text-[#0E0140] focus:outline-none min-w-0 bg-transparent"
-                            placeholder="Search job...">
+                            placeholder="Find your dream job...">
                     </div>
                     <button type="submit"
                         class="shrink-0 rounded-full py-3 px-5 lg:py-5 lg:px-[30px] bg-[#FF6B2C] font-semibold text-white text-sm lg:text-base text-nowrap hover:shadow-[0_10px_20px_0_#FF6B2C66] transition-all duration-300">

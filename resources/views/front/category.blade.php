@@ -11,17 +11,20 @@
 
         <x-nav />
 
-        <header class="container max-w-[1130px] mx-auto flex items-center justify-between gap-[50px] mt-[70px]">
+        <header
+            class="container max-w-[1130px] mx-auto flex items-center justify-between gap-[50px] mt-10 lg:mt-[70px] px-4 lg:px-0">
             <div class="flex flex-col gap-4 items-center w-full">
-                <h1 class="font-black text-[36px] leading-[70px] text-white text-center">{{ ucfirst($category->name) }}</h1>
+                <h1 class="font-black text-[32px] lg:text-[36px] leading-[40px] lg:leading-[70px] text-white text-center">
+                    {{ ucfirst($category->name) }} Jobs</h1>
             </div>
         </header>
 
-        <section id="Result" class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] w-fit">
-            <div class="categories-container grid grid-cols-3 gap-[30px]">
+        <section id="Result"
+            class="container max-w-[1130px] mx-auto flex flex-col gap-[30px] mt-[70px] w-full px-4 xl:px-0">
+            <div class="categories-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                 @foreach ($category->jobs as $job)
                     <div
-                        class="card w-[300px] flex flex-col shrink-0 rounded-[20px] border border-[#E8E4F8] p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-[#FF6B2C] transition-all duration-300">
+                        class="card w-full flex flex-col shrink-0 rounded-[20px] border border-[#E8E4F8] p-5 gap-5 bg-white shadow-[0_8px_30px_0_#0E01400D] hover:ring-2 hover:ring-[#FF6B2C] transition-all duration-300">
                         <div class="company-info flex items-center gap-3">
                             <div class="w-[70px] flex shrink-0 overflow-hidden">
                                 <img src="{{ Storage::url($job->company->logo) }}" class="object-contain w-full h-full"
@@ -70,19 +73,4 @@
             </div>
         </section>
     </body>
-@endsection
-
-@section('scripts')
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-
-    <script>
-        $('.main-carousel').flickity({
-            cellAlign: 'left',
-            contain: true,
-            prevNextButtons: false,
-            pageDots: false
-        });
-    </script>
 @endsection
