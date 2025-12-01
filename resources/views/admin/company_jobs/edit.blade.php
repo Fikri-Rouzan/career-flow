@@ -9,7 +9,7 @@
 
     <div class="py-12">
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden p-6 sm:p-10 shadow-sm sm:rounded-lg">
                 <form method="POST" action="{{ route('admin.company_jobs.update', $companyJob) }}"
                     enctype="multipart/form-data">
                     @csrf
@@ -75,15 +75,15 @@
                     <div class="mt-4">
                         <x-input-label for="thumbnail" :value="__('Thumbnail')" />
                         <img src="{{ Storage::url($companyJob->thumbnail) }}" alt=""
-                            class="rounded-2xl object-cover w-[120px] h-[90px]">
+                            class="rounded-2xl object-cover w-[120px] h-[90px] mb-3">
                         <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" autofocus
                             autocomplete="thumbnail" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                     </div>
                     <div class="mt-4">
                         <x-input-label for="about" :value="__('About')" />
-                        <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"
-                            placeholder="Type your job description">{{ $companyJob->about }}</textarea>
+                        <textarea name="about" id="about" cols="30" rows="5"
+                            class="border border-slate-300 rounded-xl w-full p-3" placeholder="Type your job description">{{ $companyJob->about }}</textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2" />
                     </div>
 
@@ -96,11 +96,12 @@
                                     $responsibilityText = $companyJob->responsibilities[$i]->name ?? '';
                                 @endphp
 
-                                <x-input-label for="responsibilities_{{ $i }}" :value="__('Responsibilities')" />
-                                <input type="text" id="responsibilities_{{ $i }}"
-                                    class="py-3 rounded-lg border-slate-300 border"
-                                    placeholder="Type your responsibilities" name="responsibilities[]"
-                                    value="{{ old('responsibilities.' . $i, $responsibilityText) }}">
+                                <div> <x-input-label for="responsibilities_{{ $i }}" :value="__('Responsibilities')" />
+                                    <input type="text" id="responsibilities_{{ $i }}"
+                                        class="mt-1 py-3 rounded-lg border-slate-300 border w-full"
+                                        placeholder="Type your responsibilities" name="responsibilities[]"
+                                        value="{{ old('responsibilities.' . $i, $responsibilityText) }}">
+                                </div>
                             @endfor
                         </div>
                         <x-input-error :messages="$errors->get('responsibilities')" class="mt-2" />
@@ -115,11 +116,13 @@
                                     $qualificationText = $companyJob->qualifications[$i]->name ?? '';
                                 @endphp
 
-                                <x-input-label for="qualifications_{{ $i }}" :value="__('Qualifications')" />
-                                <input type="text" id="qualifications_{{ $i }}"
-                                    class="py-3 rounded-lg border-slate-300 border"
-                                    placeholder="Type your qualifications" name="qualifications[]"
-                                    value="{{ old('qualifications.' . $i, $qualificationText) }}">
+                                <div>
+                                    <x-input-label for="qualifications_{{ $i }}" :value="__('Qualifications')" />
+                                    <input type="text" id="qualifications_{{ $i }}"
+                                        class="mt-1 py-3 rounded-lg border-slate-300 border w-full"
+                                        placeholder="Type your qualifications" name="qualifications[]"
+                                        value="{{ old('qualifications.' . $i, $qualificationText) }}">
+                                </div>
                             @endfor
                         </div>
                         <x-input-error :messages="$errors->get('qualifications')" class="mt-2" />
@@ -127,8 +130,9 @@
 
                     <input type="hidden" name="company_id" value="{{ $companyJob->company_id }}">
 
-                    <div class="flex items-center justify-end mt-4">
-                        <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                    <div class="flex items-center justify-end mt-8">
+                        <button type="submit"
+                            class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full w-full sm:w-auto text-center">
                             Update Job
                         </button>
                     </div>
