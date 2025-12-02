@@ -71,8 +71,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                onclick="event.preventDefault(); this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
@@ -97,60 +96,79 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('front.index')" :active="request()->routeIs('front.index')">
-                {{ __('Home') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-
-            @can('manage categories')
-                <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
-                    {{ __('Categories') }}
-                </x-responsive-nav-link>
-            @endcan
-
-            @can('manage company')
-                <x-responsive-nav-link :href="route('admin.company.index')" :active="request()->routeIs('admin.company.index')">
-                    {{ __('Company') }}
-                </x-responsive-nav-link>
-            @endcan
-
-            @can('manage jobs')
-                <x-responsive-nav-link :href="route('admin.company_jobs.index')" :active="request()->routeIs('admin.company_jobs.index')">
-                    {{ __('Job Listings') }}
-                </x-responsive-nav-link>
-            @endcan
-
-            @can('apply job')
-                <x-responsive-nav-link :href="route('dashboard.my.applications')" :active="request()->routeIs('dashboard.my.applications')">
-                    {{ __('Job Applications') }}
-                </x-responsive-nav-link>
-            @endcan
+    <div x-show="open" style="display: none;" class="fixed inset-0 z-50 flex justify-end sm:hidden">
+        <div @click="open = false" x-show="open" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0" class="fixed inset-0 bg-black/50 backdrop-blur-sm">
         </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+        <div x-show="open" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full"
+            class="relative w-full max-w-[300px] h-full bg-white shadow-xl flex flex-col overflow-y-auto">
+            <div class="flex items-center justify-end h-16 px-4 border-b border-gray-100 shrink-0">
+                <button @click="open = false"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
             </div>
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <x-responsive-nav-link :href="route('logout')"
-                        onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
+            <div class="p-6 flex flex-col h-full">
+                <div class="mb-6 pb-6 border-b border-gray-200">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <x-responsive-nav-link :href="route('front.index')" :active="request()->routeIs('front.index')">
+                        {{ __('Home') }}
                     </x-responsive-nav-link>
-                </form>
+                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-responsive-nav-link>
+
+                    @can('manage categories')
+                        <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
+                            {{ __('Categories') }}
+                        </x-responsive-nav-link>
+                    @endcan
+
+                    @can('manage company')
+                        <x-responsive-nav-link :href="route('admin.company.index')" :active="request()->routeIs('admin.company.index')">
+                            {{ __('Company') }}
+                        </x-responsive-nav-link>
+                    @endcan
+
+                    @can('manage jobs')
+                        <x-responsive-nav-link :href="route('admin.company_jobs.index')" :active="request()->routeIs('admin.company_jobs.index')">
+                            {{ __('Job Listings') }}
+                        </x-responsive-nav-link>
+                    @endcan
+
+                    @can('apply job')
+                        <x-responsive-nav-link :href="route('dashboard.my.applications')" :active="request()->routeIs('dashboard.my.applications')">
+                            {{ __('Job Applications') }}
+                        </x-responsive-nav-link>
+                    @endcan
+                </div>
+                <div class="mt-auto pt-6 border-t border-gray-200">
+                    <div class="flex flex-col gap-2">
+                        <x-responsive-nav-link :href="route('profile.edit')">
+                            {{ __('Profile') }}
+                        </x-responsive-nav-link>
+
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-responsive-nav-link :href="route('logout')"
+                                onclick="event.preventDefault(); this.closest('form').submit();" class="text-red-600">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
