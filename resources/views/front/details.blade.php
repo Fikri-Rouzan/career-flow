@@ -166,7 +166,7 @@
                 <br> Might Interested
             </h2>
             <div class="w-full overflow-x-hidden">
-                <div class="main-carousel pl-4 xl:pl-0 pr-4 xl:pr-0">
+                <div class="main-carousel pl-4 pr-4">
                     @foreach ($jobs as $job)
                         <x-job-card :job="$job" />
                     @endforeach
