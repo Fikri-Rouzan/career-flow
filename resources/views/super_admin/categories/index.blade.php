@@ -66,6 +66,10 @@
                 @empty
                     <p class="text-center text-gray-900">No categories found.</p>
                 @endforelse
+
+                <div>
+                    {{ $categories->links('components.pagination') }}
+                </div>
             </div>
         </div>
     </div>

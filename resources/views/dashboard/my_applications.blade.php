@@ -66,6 +66,10 @@
                         </a>
                     </div>
                 @endforelse
+
+                <div>
+                    {{ $my_applications->links('components.pagination') }}
+                </div>
             </div>
         </div>
     </div>

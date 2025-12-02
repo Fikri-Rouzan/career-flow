@@ -59,6 +59,10 @@
                 @empty
                     <p class="text-center text-gray-900">No job listings found.</p>
                 @endforelse
+
+                <div>
+                    {{ $company_jobs->links('components.pagination') }}
+                </div>
             </div>
         </div>
     </div>
